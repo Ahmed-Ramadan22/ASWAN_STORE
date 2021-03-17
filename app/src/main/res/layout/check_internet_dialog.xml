@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLightDemo"
+    android:gravity="center">
+    
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animate"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginTop="10dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/no_internet" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:rotationX="1"
+        android:text="OOPS!"
+        android:textColor="@color/colorAccentDemo"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Internet Connection"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/colorAccentDemo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please check your connection"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textColor="@color/colorAccentDemo"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRetry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="70dp"
+        android:textAllCaps="true"
+        android:text="Retry"
+        android:background="@drawable/button_shape"
+        android:textColor="@color/colorOnPrimaryDemo"
+        android:textSize="17sp"/>
+
+</LinearLayout>

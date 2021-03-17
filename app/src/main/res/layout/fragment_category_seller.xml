@@ -1,0 +1,573 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sellers.SellerFragment.SellerCategoryFragment">
+
+    <TextView
+        android:id="@+id/txt_cat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/categories"
+        android:textAllCaps="true"
+        android:textColor="@color/ColorTextDark"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_cat"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:id="@+id/lin_seller_category_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_offers_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#413c69"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/offers"
+                            android:textAllCaps="true"
+                            android:textColor="#EBF14B0E"
+                            android:textSize="24sp"
+                            android:textStyle="italic|bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="8dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/offers"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_mobile_card_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#1687a7"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:padding="12dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/mobile"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="18dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/mobiles"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="italic|bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_man_Fashion_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#bbdfc8"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/man_s_fashion"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorPrimaryDemo"
+                            android:textSize="24sp"
+                            android:textStyle="italic|bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/tshirt"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_laptop_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#276678"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="88dp"
+                            android:layout_marginStart="10dp"
+                            android:padding="18dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/laptop"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/laptops"
+                            android:textColor="@color/ColorTextSkip"
+                            android:textSize="24sp"
+                            android:textStyle="italic|bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_electronic_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#8b5e83"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/electronics_amp_accessories"
+                            android:textColor="#f1f6f9"
+                            android:textSize="22sp"
+                            android:textStyle="italic|bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="88dp"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:src="@drawable/playstation5"
+                            tools:ignore="ContentDescription" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_sport_clothes_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#cdfffc"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:padding="14dp"
+                            android:src="@drawable/sport_clothes"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/sport_clothes"
+                            android:textColor="@color/colorPrimaryDemo"
+                            android:textSize="23sp"
+                            android:textStyle="italic|bold" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_womens_fashion_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#19456b"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/fashion"
+                            android:textAllCaps="true"
+                            android:textColor="#DFEC732A"
+                            android:textSize="22sp"
+                            android:textStyle="italic|bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="92dp"
+                            android:layout_weight="1"
+                            android:padding="14dp"
+                            android:src="@drawable/fashion"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_glasses_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#e08f62"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/watch"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/watches"
+                            android:textAllCaps="true"
+                            android:textColor="#19456b"
+                            android:textSize="25sp"
+                            android:textStyle="italic|bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                android:id="@+id/seller_home_cart_frag"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="29dp"
+                app:cardElevation="0dp"
+                app:cardMaxElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#03506f"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:fontFamily="serif"
+                        android:gravity="center"
+                        android:text="@string/home_essentials"
+                        android:textAllCaps="true"
+                        android:textColor="#e79e4f"
+                        android:textSize="22sp"
+                        android:textStyle="italic|bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:padding="12dp"
+                        android:src="@drawable/home"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_Restaurants_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#433520"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:padding="8dp"
+                            android:src="@drawable/food"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/restaurants"
+                            android:textAllCaps="true"
+                            android:textColor="#e45826"
+                            android:textSize="22sp"
+                            android:textStyle="italic|bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/seller_beauty_cart_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="29dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#440a67"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/beauty"
+                            android:textAllCaps="true"
+                            android:textColor="#e79e4f"
+                            android:textSize="22sp"
+                            android:textStyle="italic|bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:padding="8dp"
+                            android:src="@drawable/beauty"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                android:id="@+id/seller_handmade_cart_frag"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="29dp"
+                app:cardElevation="0dp"
+                app:cardMaxElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#28527a"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:src="@drawable/handmade"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:fontFamily="serif"
+                        android:gravity="center"
+                        android:text="@string/handmade"
+                        android:textAllCaps="true"
+                        android:textColor="#f4d160"
+                        android:textSize="22sp"
+                        android:textStyle="italic|bold" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

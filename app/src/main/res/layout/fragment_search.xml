@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.fragmants.SearchFragment">
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp">
+
+        <ImageView
+            android:layout_width="88dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/as_logo"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/search_edit_product"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/border_button"
+            android:drawableStart="@drawable/ic_search"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:drawablePadding="8dp"
+            android:maxLines="1"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/search_img_btn"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_dark_search"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:padding="3dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/search_bar"
+        android:id="@+id/search_list_ry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:scrollbars="horizontal"
+        app:spanCount="2"/>
+
+
+</RelativeLayout>

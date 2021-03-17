@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.Ui.ConfirmFinalOrder"
+    android:orientation="vertical">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginTop="25dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/confirmation" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/please_write_your_shipment_details"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/ColorTextDark"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <EditText
+            android:id="@+id/shipment_name"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_txt_bag"
+            android:drawableStart="@drawable/ic_person"
+            android:hint="@string/user_name"
+            android:maxLines="1"
+            android:inputType="textPersonName"
+            android:drawablePadding="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/shipment_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_txt_bag"
+            android:drawableStart="@drawable/ic_phone"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            android:drawablePadding="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:maxLines="1"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp" />
+
+
+        <EditText
+            android:id="@+id/shipment_home_address"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_txt_bag"
+            android:drawableStart="@drawable/ic_location"
+            android:hint="@string/your_home_address"
+            android:inputType="text"
+            android:drawablePadding="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/shipment_orders_Des"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_txt_bag"
+            android:hint="@string/your_order_details"
+            android:inputType="text"
+            android:drawablePadding="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:drawableStart="@drawable/ic_details"
+            android:paddingBottom="10dp" />
+
+        <Button
+            android:id="@+id/confirm_final_order"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:shadowColor="@color/ColorTextDark"
+            android:text="@string/confirm"
+            android:textColor="#113771"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#193161"
+    tools:context=".LoginAndRegister.Ui.MainActivity">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <ImageView
+        android:id="@+id/splash_logo_image"
+        android:layout_width="270dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="140dp"
+        android:src="@drawable/as_logo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splash_logo_image"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/easy_to_use_to_explore_additional_new_options_for_products_and_free_shopping"
+        android:textColor="@color/ColorTextSkip"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_become_Partner"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="@string/become_a_partner"
+            android:textColor="@color/ColorTextSkip"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/join_us_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/btn_main"
+            android:clickable="true"
+            android:focusable="true"
+            android:shadowColor="@color/ColorTextDark"
+            android:text="@string/let_join_us"
+            android:textAllCaps="false"
+            android:textColor="@color/ColorTextDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "170739063535",
+    "project_id": "aswan-ecommerce",
+    "storage_bucket": "aswan-ecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170739063535:android:721c51ac099d0b610fd91a",
+        "android_client_info": {
+          "package_name": "com.aramadan.aswan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170739063535-fpgv2ugfrdbb1njvfrtj1v3t7j46ivmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aramadan.aswan",
+            "certificate_hash": "ce766f38ad44b16e2a3f1fa8bf2ccfbbcc511eb4"
+          }
+        },
+        {
+          "client_id": "170739063535-fvfej7o09ov9m7c8behmlr9avgbfc1ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDghUwCb_eVHa_KC3bu5OqTmHpYPlsCI8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170739063535-fvfej7o09ov9m7c8behmlr9avgbfc1ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

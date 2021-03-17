@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Sellers.View.SellerLoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/seller"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/seller_login_form"
+                android:gravity="center"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#03005C"
+                android:layout_marginTop="8dp"/>
+
+
+            <LinearLayout
+                android:id="@+id/form_regist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:paddingBottom="10dp">
+
+
+                <EditText
+                    android:id="@+id/seller_email_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_txt_bag"
+                    android:drawableStart="@drawable/ic_email"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:drawablePadding="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="17sp"/>
+
+                <EditText
+                    android:id="@+id/seller_password_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_txt_bag"
+                    android:drawableStart="@drawable/ic_pass"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:drawablePadding="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/forget_pass_tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center|end"
+                    android:onClick="callForgetPasswordSeller"
+                    android:text="@string/forget_password"
+                    android:textColor="@color/gradient_start_color"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginBottom="30dp">
+
+                <Button
+                    android:id="@+id/seller_login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_back"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:shadowColor="@color/ColorTextDark"
+                    android:text="@string/login_now"
+                    android:textAllCaps="false"
+                    android:textColor="#113771"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:layout_width="38sp"
+                    android:layout_height="38dp"
+                    android:id="@+id/login_bar"
+                    android:visibility="gone"
+                    android:layout_gravity="center"/>
+
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

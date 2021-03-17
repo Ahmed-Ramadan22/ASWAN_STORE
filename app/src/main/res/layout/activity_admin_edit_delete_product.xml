@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin.Ui.AdminEditDeleteProductActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:src="@drawable/as_logo"
+                    android:contentDescription="TODO" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/offers"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_offers_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/man_s_fashion"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_home_products"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fashion"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_woman_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/beauty"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_beauty_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobiles"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_Mobiles_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/laptops"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_laptops_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/electronics_amp_accessories"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_electronics_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_essentials"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_essentials_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sport_clothes"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_SportClothes_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glasses"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_glasses_products" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/restaurants"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_restaurants_products" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+</LinearLayout>

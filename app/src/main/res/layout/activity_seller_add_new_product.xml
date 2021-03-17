@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sellers.View.SellerAddNewProductActivity">
+
+        <ImageView
+            android:id="@+id/seller_add_img_product"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/add_image"
+            android:layout_marginTop="40dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/seller_add_img_product"
+            android:layout_width="match_parent"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/seller_add_product_name_edt"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/edit_txt_bag"
+                android:hint="@string/product_name"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                android:textSize="19sp"
+                android:maxLines="1"
+                android:textColor="@color/ColorTextDark"/>
+
+            <EditText
+                android:id="@+id/seller_add_product_price_edt"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edit_txt_bag"
+                android:hint="@string/product_price"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                android:textSize="19sp"
+                android:maxLines="1"
+                android:textColor="@color/ColorTextDark"/>
+
+            <EditText
+                android:id="@+id/seller_add_product_desc_edt"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="60dp"
+                android:background="@drawable/edit_txt_bag"
+                android:hint="@string/product_description"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingEnd="10dp"
+                android:textSize="19sp"
+                android:textColor="@color/ColorTextDark"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <Button
+                    android:id="@+id/seller_add_product_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_back"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:shadowColor="@color/ColorTextDark"
+                    android:text="@string/add_product"
+                    android:textColor="#113771"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:layout_width="38sp"
+                    android:layout_height="38dp"
+                    android:id="@+id/seller_progressBar_addPro"
+                    android:visibility="gone"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>
