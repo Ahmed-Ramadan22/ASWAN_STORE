@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Admin.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,7 +78,7 @@ public class AdminUserProductActivity extends AppCompatActivity {
             @NonNull
             @Override
             public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item_layout, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_cart_item_layout, parent, false);
                 return new CartViewHolder(view);
             }
         };

@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Sellers.SellerFragment;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import android.content.Intent;
 import android.os.Bundle;

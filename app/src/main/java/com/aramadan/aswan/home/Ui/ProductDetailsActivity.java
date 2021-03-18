@@ -1,4 +1,9 @@
 package com.aramadan.aswan.home.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.sax.ElementListener;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +47,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import static com.aramadan.aswan.R.string.AddedtoCartList;
+
 public class ProductDetailsActivity extends AppCompatActivity {
 
     private ImageView productImage;
@@ -55,7 +64,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Products products;
 
     private DatabaseReference sellerRef;
-    private static boolean block = false;
 
     private String sName, sAddress, sPhone, sEmail, uID;
 
@@ -76,35 +84,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                Thread thread=new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        while (block == false) {
-//                            try {
-//                                Thread.sleep(1000);
-//                            } catch (InterruptedException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
                         addingToCartList();
-//                        block = false ;
-//
-//                    }
-//                });
-//                thread.start();
-
-
             }
         });
 
-        sellerRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ProductDetailsActivity.this);
+        String sellerUid = preferences.getString("seller_id","");
+
+        sellerRef.child(sellerUid)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         if (snapshot.exists()) {
-                    //        block = true;
                             sName = snapshot.child("sellerName").getValue().toString();
                             sAddress = snapshot.child("sellerAddress").getValue().toString();
                             sPhone = snapshot.child("sellerPhone").getValue().toString();
@@ -115,7 +107,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        block = true;
+
                     }
                 });
     }
@@ -173,7 +165,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                             progressBar.setVisibility(View.GONE);
                                             addToCartBtn.setVisibility(View.VISIBLE);
 
-                                            Toast.makeText(ProductDetailsActivity.this, "Added to Cart List ..", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProductDetailsActivity.this, AddedtoCartList, Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(ProductDetailsActivity.this, HomeActivity.class));
                                         }
                                     });

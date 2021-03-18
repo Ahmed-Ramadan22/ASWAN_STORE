@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Admin.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +36,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static com.aramadan.aswan.R.string.sucess;
 
 public class AdminLoginActivity extends AppCompatActivity {
 
@@ -91,17 +98,17 @@ public class AdminLoginActivity extends AppCompatActivity {
         final String userName = userName_admin_edt.getText().toString();
 
         if (TextUtils.isEmpty(password) || !(password.length() >=8)){
-            password_admin_edt.setError("You must have 8 characters in your password");
+            password_admin_edt.setError(getString(R.string.desPass));
             password_admin_edt.requestFocus();
             return;
         }else  if (TextUtils.isEmpty(email) ||!(Patterns.EMAIL_ADDRESS.matcher(email).matches())){
-            email_admin_edt.setError("Please write a valid Email.");
+            email_admin_edt.setError(getString(R.string.validEmail));
             email_admin_edt.requestFocus();
             return;
         } else {
 
-            dialogLoading.setTitle("Login Admin Account");
-            dialogLoading.setMessage("Please wait, While we are checking the Credentials. ");
+            dialogLoading.setTitle(getString(R.string.loginAdmin));
+            dialogLoading.setMessage(getString(R.string.checking));
             dialogLoading.setCanceledOnTouchOutside(false);
             dialogLoading.show();
 
@@ -131,16 +138,16 @@ public class AdminLoginActivity extends AppCompatActivity {
                                 editor.putInt(USER_TYPE, 1);
                                 editor.apply();
                                 
-                                Toast.makeText(AdminLoginActivity.this, "Welcome Admin, Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminLoginActivity.this, sucess, Toast.LENGTH_SHORT).show();
                                 dialogLoading.dismiss();
                                 startActivity(new Intent(AdminLoginActivity.this, AdminHomeActivity.class));
                             }
                     }else {
-                        email_admin_edt.setError("InCorrect Email and Password !");
+                        email_admin_edt.setError(getString(R.string.InCorrect_Email_and_Password));
                     }
 
                 } else {
-                    Toast.makeText(AdminLoginActivity.this, "Something is Wrong, You Email InValid to admin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminLoginActivity.this, R.string.tostWrong, Toast.LENGTH_SHORT).show();
                     dialogLoading.dismiss();
                 }
             }

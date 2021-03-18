@@ -1,4 +1,9 @@
 package com.aramadan.aswan.LoginAndRegister.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import io.paperdb.Paper;
 
 import static com.aramadan.aswan.Admin.Ui.AdminLoginActivity.USER_TYPE;
+import static com.aramadan.aswan.R.string.Failedtologin;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private CheckBox checkbox_rm;
 
-    private NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,17 +108,17 @@ public class LoginActivity extends AppCompatActivity {
         String email = email_edt_log.getText().toString();
 
         if (TextUtils.isEmpty(password) || !(password.length() >=8)){
-            pass_edt_log.setError("You must have 8 characters in your password");
+            pass_edt_log.setError(getString(R.string.Youmusthave8characters));
             pass_edt_log.requestFocus();
             return;
         }else  if (TextUtils.isEmpty(email) ||!(Patterns.EMAIL_ADDRESS.matcher(email).matches())){
-            email_edt_log.setError("Please write a valid Email.");
+            email_edt_log.setError(getString(R.string.validEmail));
             email_edt_log.requestFocus();
             return;
         } else {
 
-            dialogLoading.setTitle("Login Account");
-            dialogLoading.setMessage("Please wait, While we are checking the Credentials. ");
+            dialogLoading.setTitle(getString(R.string.LoginAccount));
+            dialogLoading.setMessage(getString(R.string.Credentials));
             dialogLoading.setCanceledOnTouchOutside(false);
             dialogLoading.show();
 
@@ -125,16 +131,19 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+
+                        String uid = mAuth.getCurrentUser().getUid();
+
                         dialogLoading.dismiss();
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                         SharedPreferences.Editor editor = preferences.edit();
 
-                        editor.putInt(USER_TYPE, 2);
+                        editor.putString("user_id", uid);
                         editor.apply();
                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     } else {
                         dialogLoading.dismiss();
-                        Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, Failedtologin, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Network;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;

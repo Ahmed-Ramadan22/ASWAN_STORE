@@ -1,12 +1,19 @@
 package com.aramadan.aswan.Sellers.View;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.aramadan.aswan.Admin.Ui.AdminLoginActivity;
 import com.aramadan.aswan.Network.NetworkChangeListener;
 import com.aramadan.aswan.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -79,15 +87,15 @@ public class SellerRegistrationActivity extends AppCompatActivity {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if (TextUtils.isEmpty(name)) {
-            nameInput.setError("Please write your User Name.");
-        }else if (TextUtils.isEmpty(email) || !email.matches(emailPattern)) {
-            emailInput.setError("Invalid email address like ####@###.###");
-        } else if (TextUtils.isEmpty(phone) || !(phone.length() == 11)) {
-            phoneInput.setError("Invalid your Phone Number.");
+            nameInput.setError(getString(R.string.UserName));
+        }else if (TextUtils.isEmpty(email) || !email.matches(emailPattern))
+            emailInput.setError(getString(R.string.Invalidemailaddresslike));
+        else if (TextUtils.isEmpty(phone) || !(phone.length() == 11)) {
+            phoneInput.setError(getString(R.string.PhoneNumber));
         } else if (TextUtils.isEmpty(password) || !(password.length() >= 8)) {
-            passwordInput.setError("You must have 8 characters in your password");
+            passwordInput.setError(getString(R.string.characters));
         }  else if (TextUtils.isEmpty(address)) {
-            addressInput.setError("Please write your Address.");
+            addressInput.setError(getString(R.string.Address));
         } else {
             progressBar.setVisibility(View.VISIBLE);
             registerButton.setVisibility(View.INVISIBLE);
@@ -117,7 +125,14 @@ public class SellerRegistrationActivity extends AppCompatActivity {
                                         progressBar.setVisibility(View.INVISIBLE);
                                         registerButton.setVisibility(View.VISIBLE);
 
-                                        Toast.makeText(SellerRegistrationActivity.this, "You are Registered Successfully ..", Toast.LENGTH_SHORT).show();
+
+                                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SellerRegistrationActivity.this);
+                                        SharedPreferences.Editor editor = preferences.edit();
+
+                                        editor.putString("seller_id", uid);
+                                        editor.apply();
+
+                                        Toast.makeText(SellerRegistrationActivity.this, R.string.Successfully, Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(SellerRegistrationActivity.this, SellerHomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -130,7 +145,7 @@ public class SellerRegistrationActivity extends AppCompatActivity {
                     } else {
                         progressBar.setVisibility(View.INVISIBLE);
                         registerButton.setVisibility(View.VISIBLE);
-                        Toast.makeText(SellerRegistrationActivity.this, "You are Failed 2 ..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SellerRegistrationActivity.this, R.string.Credentials, Toast.LENGTH_SHORT).show();
 
                     }
 

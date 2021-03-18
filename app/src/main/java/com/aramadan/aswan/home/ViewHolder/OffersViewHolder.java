@@ -1,5 +1,6 @@
 package com.aramadan.aswan.home.ViewHolder;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,8 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aramadan.aswan.R;
 import com.aramadan.aswan.home.Interface.ItemClickListener;
+import com.aramadan.aswan.home.Model.Products;
+import com.squareup.picasso.Picasso;
+
+import static android.view.View.GONE;
 
 public class OffersViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
 
     public TextView productName_txt, productDesc_txt, productPrice_txt;
     public ImageView productImage;
@@ -24,6 +31,7 @@ public class OffersViewHolder extends RecyclerView.ViewHolder implements View.On
         productDesc_txt = itemView.findViewById(R.id.offers_product_txt_des);
         productPrice_txt= itemView.findViewById(R.id.offers_price_cart_item);
 
+
     }
 
     public void setItemClickListener(ItemClickListener listener){
@@ -34,4 +42,17 @@ public class OffersViewHolder extends RecyclerView.ViewHolder implements View.On
     public void onClick(View v) {
         clickListener.onClick(v, getAdapterPosition(), false);
     }
+
+    public void init(Products item) {
+        
+            itemView.setVisibility(View.VISIBLE);
+
+            productName_txt.setText(item.getPname());
+            productDesc_txt.setText(item.getDescription());
+            productPrice_txt.setText(item.getPrice());
+            Picasso.get().load(item.getImage()).into(productImage);
+
+    }
+
+
 }

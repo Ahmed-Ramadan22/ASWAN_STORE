@@ -1,4 +1,9 @@
 package com.aramadan.aswan.LoginAndRegister.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +25,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import static com.aramadan.aswan.R.string.Checkyouremailtoresetpassword;
+import static com.aramadan.aswan.R.string.TryAgainSomethingwronghappened;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
@@ -54,13 +62,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         String email = inputEmail.getText().toString().trim();
 
         if (email.isEmpty()){
-            inputEmail.setError("Email is required!");
+            inputEmail.setError(getString(R.string.Emailsrequired));
             inputEmail.requestFocus();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            inputEmail.setError("Please provide valid email!");
+            inputEmail.setError(getString(R.string.Pleaseprovidevalidemail));
             inputEmail.requestFocus();
             return;
         }
@@ -75,7 +83,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
                     reset_Pass.setVisibility(View.VISIBLE);
-                    Toast.makeText(ForgetPasswordActivity.this, "Check your email to reset password ..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetPasswordActivity.this, Checkyouremailtoresetpassword, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(ForgetPasswordActivity.this , LoginActivity.class);
                     startActivity(intent);
@@ -84,7 +92,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 }else {
                     progressBar.setVisibility(View.GONE);
                     reset_Pass.setVisibility(View.VISIBLE);
-                    Toast.makeText(ForgetPasswordActivity.this, "Try Again! Something wrong happened ..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetPasswordActivity.this, TryAgainSomethingwronghappened, Toast.LENGTH_SHORT).show();
                 }
 
             }

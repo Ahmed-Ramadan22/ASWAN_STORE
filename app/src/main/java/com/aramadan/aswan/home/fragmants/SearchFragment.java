@@ -1,4 +1,9 @@
 package com.aramadan.aswan.home.fragmants;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,13 +22,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.aramadan.aswan.R;
+import com.aramadan.aswan.adapter.ClickableAction;
+import com.aramadan.aswan.adapter.Filter;
+import com.aramadan.aswan.adapter.ProductHolderAdapter;
 import com.aramadan.aswan.home.Model.Products;
 import com.aramadan.aswan.home.Ui.ProductDetailsActivity;
+import com.aramadan.aswan.home.ViewHolder.CartViewHolder;
 import com.aramadan.aswan.home.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import static android.view.View.GONE;
@@ -34,6 +44,7 @@ public class SearchFragment extends Fragment {
     private EditText inputSearch;
     private ImageView searchBtn;
     private RecyclerView searchList;
+    private DatabaseReference mUserDatabase;;
 
     private String searchInput;
 
@@ -54,17 +65,20 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_search, container, false);
 
+        mUserDatabase = FirebaseDatabase.getInstance().getReference("Products");
+
         inputSearch = v.findViewById(R.id.search_edit_product);
         searchBtn = v.findViewById(R.id.search_img_btn);
         searchList = v.findViewById(R.id.search_list_ry);
 
-        searchList.setLayoutManager(new GridLayoutManager(v.getContext(), 2));
+        searchList.setLayoutManager(new LinearLayoutManager(getContext()));
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchInput = inputSearch.getText().toString();
+                String searchText = inputSearch.getText().toString();
 
-                onStart();
+                firebaseUserSearch(searchText);
 
             }
         });
@@ -72,61 +86,32 @@ public class SearchFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    private void firebaseUserSearch(String searchText) {
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(reference.orderByChild("pname").startAt(searchInput).endAt(searchInput + "\ufBff"), Products.class)
-                .build();
-
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                if (!model.getProductState().equals("Approved")) {
-                    holder.itemView.setVisibility(GONE);
-                    //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                } else {
-                    holder.itemView.setVisibility(View.VISIBLE);
-
-                    holder.productName_txt.setText(model.getPname());
-                    holder.productDesc_txt.setText(model.getDescription());
-                    holder.productPrice_txt.setText(model.getPrice());
-                    Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                    holder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                            intent.putExtra("pid", model.getPid());
-                            startActivity(intent);
-
-                        }
-                    });
-                }
+        Query firebaseSearchQuery = mUserDatabase.orderByChild("pname").startAt(searchText).endAt(searchText + "\uf8ff");
 
 
-            }
-
-            @NonNull
-            @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.product_items_layout,
-                                parent,
-                                false);
-
-                return new ProductViewHolder(view);
-            }
-        };
-
-        searchList.setAdapter(adapter);
-        adapter.startListening();
+        searchList.setAdapter(new ProductHolderAdapter(
+                R.layout.offars_item_cart,
+                firebaseSearchQuery,
+                getActivity(),
+                new Filter<Products>() {
+                    @Override
+                    public boolean filter(Products products) {
+                        return  products.getProductState().equals("Approved");
+                    }
+                },
+                new ClickableAction<Products>() {
+                    @Override
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
+                    }
+                }));
 
     }
+
 
     @Override
     public void onResume() {

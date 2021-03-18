@@ -38,7 +38,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -49,7 +49,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
     // Add the dependency for the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics:18.0.2'
-    implementation 'com.google.firebase:firebase-database:19.6.0'
+    implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
     implementation 'com.google.firebase:firebase-auth:20.0.3'
@@ -70,6 +70,5 @@ dependencies {
     //Picasso image downloading and caching library
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
-
 
 }

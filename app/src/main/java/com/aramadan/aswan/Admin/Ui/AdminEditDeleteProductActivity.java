@@ -1,36 +1,32 @@
 package com.aramadan.aswan.Admin.Ui;
 
-import androidx.annotation.NonNull;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.aramadan.aswan.R;
+import com.aramadan.aswan.adapter.ClickableAction;
+import com.aramadan.aswan.adapter.Filter;
+import com.aramadan.aswan.adapter.ProductHolderAdapter;
 import com.aramadan.aswan.home.Model.Products;
-import com.aramadan.aswan.home.Ui.ProductDetailsActivity;
-import com.aramadan.aswan.home.ViewHolder.OffersViewHolder;
-import com.aramadan.aswan.home.ViewHolder.ProductViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-
-import static android.view.View.GONE;
 
 public class AdminEditDeleteProductActivity extends AppCompatActivity {
 
     private DatabaseReference productRef;
     private RecyclerView rVHomeProducts, rvOfferRef, rVMobileProducts, rvLaptopsProd,
             rvElectronicsProd, rvSportClothes, rvWatchesProd, rvWomanProd,
-            rvEssentialsProd, rvRestaurantsProd, rvBeautyProd;
+            rvEssentialsProd, rvRestaurantsProd, rvBeautyProd, rvHandMade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +56,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
         rVMobileProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         // RecyclerView Product Laptops
-        rvLaptopsProd =  findViewById(R.id.Admin_recycler_laptops_products);
+        rvLaptopsProd = findViewById(R.id.Admin_recycler_laptops_products);
         rvLaptopsProd.setHasFixedSize(true);
         rvLaptopsProd.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -75,7 +71,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
         rvSportClothes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         // RecyclerView Product rvWatchesProd
-        rvWatchesProd =  findViewById(R.id.Admin_recycler_glasses_products);
+        rvWatchesProd = findViewById(R.id.Admin_recycler_glasses_products);
         rvWatchesProd.setHasFixedSize(true);
         rvWatchesProd.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -90,9 +86,15 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
         rvEssentialsProd.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         // RecyclerView Product restaurants
-        rvRestaurantsProd =  findViewById(R.id.Admin_recycler_restaurants_products);
+        rvRestaurantsProd = findViewById(R.id.Admin_recycler_restaurants_products);
         rvRestaurantsProd.setHasFixedSize(true);
         rvRestaurantsProd.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        // recycler_handmade_products
+        rvHandMade = findViewById(R.id.Admin_recycler_handmade_products);
+        rvHandMade.setHasFixedSize(true);
+        rvHandMade.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
 
     }
 
@@ -111,621 +113,278 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
         _rvWomanProd();
         _rvEssentialsProd();
         _rvRestaurantsProd();
+        _rvHandmadeProd();
+    }
 
+
+    private void _rvHandmadeProd() {
+
+        rvHandMade.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
+                    @Override
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Handmade") && products.getProductState().equals("Approved");
+                    }
+                },
+                new ClickableAction<Products>() {
+                    @Override
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
+
+                    }
+                }));
     }
 
     private void _beautyProduct() {
 
-        // rvBeautyProd RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Beauty"), Products.class)
-                .build();
-
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvBeautyProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                        intent.putExtra("pid", model.getPid());
-                                        startActivity(intent);
-
-
-                                }
-                            });
-                        }
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Beauty") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
+                }));
 
-        rvBeautyProd.setAdapter(adapter);
-        adapter.startListening();
-        ////////
     }
 
     private void _manFashionProduct() {
-        // CLOTHES RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Man's Fashion"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rVHomeProducts.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Man's Fashion") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
-
-        rVHomeProducts.setAdapter(adapter);
-        adapter.startListening();
-        /////////
-
+                }));
     }
 
     private void _rvRestaurantsProd() {
-        // Restaurants RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Restaurants"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvRestaurantsProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-                                }
-                            });
-                        }
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Restaurants") && products.getProductState().equals("Approved");
                     }
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
-
-        rvRestaurantsProd.setAdapter(adapter);
-        adapter.startListening();
-        /////////
+                }));
     }
 
     private void _rvEssentialsProd() {
 
-        // Home Essentials RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Home Essentials"), Products.class)
-                .build();
-
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvEssentialsProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-                                }
-                            });
-                        }
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Home Essentials") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
+                }));
 
-        rvEssentialsProd.setAdapter(adapter);
-        adapter.startListening();
-        /////////
     }
 
     private void _rvWomanProd() {
-        // Women's Fashion RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Women's Fashion"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvWomanProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-                                }
-                            });
-                        }
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Women's Fashion") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
-
-        rvWomanProd.setAdapter(adapter);
-        adapter.startListening();
-        /////////
+                }));
     }
 
     private void _rvWatchesProd() {
-        // Watches RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Watches"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvWatchesProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Watches") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
-
-        rvWatchesProd.setAdapter(adapter);
-        adapter.startListening();
-        /////////
+                }));
     }
 
     private void _rvSportClothes() {
-        // SportClothes RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Sports Clothes"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvSportClothes.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Sports Clothes") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
+                }));
 
-        rvSportClothes.setAdapter(adapter);
-        adapter.startListening();
-        /////////
     }
 
     private void _rvElectronicsProd() {
-        // Electronics RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Electronics & Accessories"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvElectronicsProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Electronics & Accessories") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
-
-        rvElectronicsProd.setAdapter(adapter);
-        adapter.startListening();
-        /////////
-
+                }));
     }
 
     private void _laptopsProduct() {
-        // Laptops RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Laptops"), Products.class)
-                .build();
-
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvLaptopsProd.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Laptops") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
-
-        rvLaptopsProd.setAdapter(adapter);
-        adapter.startListening();
-        /////////
+                }));
 
     }
 
     private void _mobileProducts() {
-        // Mobiles RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Mobile & Tablets"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rVMobileProducts.setAdapter(new ProductHolderAdapter(
+                R.layout.product_items_layout,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Mobile & Tablets") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.product_items_layout,
-                                        parent,
-                                        false);
-
-                        return new ProductViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
+                }));
 
-        rVMobileProducts.setAdapter(adapter);
-        adapter.startListening();
-        /////////
     }
 
     private void _offersProduct() {
-        // Offers RECYCLER
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions
-                .Builder<Products>()
-                .setQuery(productRef.orderByChild("category").equalTo("Offers"), Products.class)
-                .build();
 
-        FirebaseRecyclerAdapter<Products, OffersViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, OffersViewHolder>(options) {
-                    @SuppressLint("SetTextI18n")
+        rvOfferRef.setAdapter(new ProductHolderAdapter(
+                R.layout.offars_item_cart,
+                productRef,
+                this,
+                new Filter<Products>() {
                     @Override
-                    protected void onBindViewHolder(@NonNull OffersViewHolder holder, int position, @NonNull Products model) {
-
-                        if (!model.getProductState().equals("Approved")) {
-                            holder.itemView.setVisibility(GONE);
-                            //  Toast.makeText(getContext(), "GONE", Toast.LENGTH_SHORT).show();
-                        } else {
-                            holder.itemView.setVisibility(View.VISIBLE);
-
-                            holder.productName_txt.setText(model.getPname());
-                            holder.productDesc_txt.setText(model.getDescription());
-                            holder.productPrice_txt.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
-
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-
-                                }
-                            });
-                        }
-
-
+                    public boolean filter(Products products) {
+                        return products.getCategory().equals("Offers") && products.getProductState().equals("Approved");
                     }
-
-                    @NonNull
+                },
+                new ClickableAction<Products>() {
                     @Override
-                    public OffersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.offars_item_cart,
-                                        parent,
-                                        false);
-
-                        return new OffersViewHolder(view);
+                    public void onClick(Products item) {
+                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+                        intent.putExtra("pid", item.getPid());
+                        startActivity(intent);
                     }
-                };
+                }));
 
-        rvOfferRef.setAdapter(adapter);
-        adapter.startListening();
-        /////////
     }
 
 }

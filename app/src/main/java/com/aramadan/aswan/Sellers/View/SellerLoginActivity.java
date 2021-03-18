@@ -1,9 +1,16 @@
 package com.aramadan.aswan.Sellers.View;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +28,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import static com.aramadan.aswan.R.string.Successfully;
 
 public class SellerLoginActivity extends AppCompatActivity {
 
@@ -60,12 +69,13 @@ public class SellerLoginActivity extends AppCompatActivity {
         String password = passwordInput.getText().toString();
 
 
+
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if (TextUtils.isEmpty(email) || !email.matches(emailPattern)) {
-            emailInput.setError("Invalid email address like ####@###.###");
+            emailInput.setError(getString(R.string.Invalidemailaddresslike));
         } else if (TextUtils.isEmpty(password) || !(password.length() >= 8)) {
-            passwordInput.setError("You must have 8 characters in your password");
+            passwordInput.setError(getString(R.string.characters));
         } else {
             bar.setVisibility(View.VISIBLE);
             loginSellerBtn.setVisibility(View.INVISIBLE);
@@ -76,10 +86,18 @@ public class SellerLoginActivity extends AppCompatActivity {
 
                     if (task.isSuccessful()) {
 
+                        String uid = mAuth.getCurrentUser().getUid();
+
                         bar.setVisibility(View.INVISIBLE);
                         loginSellerBtn.setVisibility(View.VISIBLE);
 
-                        Toast.makeText(SellerLoginActivity.this, "You are Registered Successfully ..", Toast.LENGTH_SHORT).show();
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SellerLoginActivity.this);
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        editor.putString("seller_id", uid);
+                        editor.apply();
+
+                        Toast.makeText(SellerLoginActivity.this, Successfully, Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(SellerLoginActivity.this, SellerHomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -89,7 +107,7 @@ public class SellerLoginActivity extends AppCompatActivity {
                     } else {
                         bar.setVisibility(View.INVISIBLE);
                         loginSellerBtn.setVisibility(View.VISIBLE);
-                        Toast.makeText(SellerLoginActivity.this, "Try Again Please and check your Email Account ..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SellerLoginActivity.this, R.string.TryAgainandcheck, Toast.LENGTH_SHORT).show();
                     }
 
                 }

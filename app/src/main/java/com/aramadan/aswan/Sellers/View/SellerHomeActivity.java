@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Sellers.View;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

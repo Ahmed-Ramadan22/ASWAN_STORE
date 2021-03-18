@@ -1,9 +1,16 @@
 package com.aramadan.aswan.home.fragmants;
 
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +44,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import static com.aramadan.aswan.R.string.ItemRemovedSuccessfully;
+
 
 public class CartFragment extends Fragment {
 
@@ -46,7 +54,7 @@ public class CartFragment extends Fragment {
     private TextView txtTotalAmount;
     private FirebaseAuth mAuth;
 
-    private int overTotalPrice = 0;
+    private float overTotalPrice = 0;
 
     public CartFragment() {
 
@@ -97,13 +105,15 @@ public class CartFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        String userN = mAuth.getCurrentUser().getUid();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String user_Uid = preferences.getString("user_id","");
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
         FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>()
                 .setQuery(cartListRef.child("User View")
-                        .child(userN).child("Products"), Cart.class)
+                        .child(user_Uid).child("Products"), Cart.class)
                 .build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
@@ -116,19 +126,25 @@ public class CartFragment extends Fragment {
                 holder.txtProductPrice.setText(model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.imgProduct);
 
-                int oneTypeProductTPrice = Integer.parseInt(model.getPrice()) * Integer.parseInt(model.getQuantity());
-                overTotalPrice = overTotalPrice + oneTypeProductTPrice;
+                try {
+
+                    float oneTypeProductTPrice = Float.parseFloat(model.getPrice()) * Float.parseFloat(model.getQuantity());
+                    overTotalPrice = overTotalPrice + oneTypeProductTPrice;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         CharSequence[] options = new CharSequence[]{
-                                "Edit",
-                                "Remove"
+                                getString(R.string.EDIT),
+                                getString(R.string.REMOVE)
                         };
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle("Cart Options:");
+                        builder.setTitle(R.string.CartOptions);
 
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
@@ -140,7 +156,7 @@ public class CartFragment extends Fragment {
                                 }
                                 if (i == 1) {
                                     cartListRef.child("User View")
-                                            .child(userN)
+                                            .child(user_Uid)
                                             .child("Products")
                                             .child(model.getPid())
                                             .removeValue()
@@ -148,7 +164,7 @@ public class CartFragment extends Fragment {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        Toast.makeText(getContext(), "Item Removed Successfully ..", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getContext(), ItemRemovedSuccessfully, Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                      });

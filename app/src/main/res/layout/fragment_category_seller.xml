@@ -9,7 +9,7 @@
         android:id="@+id/txt_cat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:text="@string/categories"
@@ -24,14 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_cat"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:id="@+id/lin_seller_category_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:gravity="center"
             android:layout_marginBottom="20dp"
             android:orientation="vertical">
@@ -41,12 +41,12 @@
                     android:id="@+id/seller_offers_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -86,12 +86,12 @@
                     android:id="@+id/seller_mobile_card_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -130,12 +130,12 @@
                     android:id="@+id/seller_man_Fashion_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -174,12 +174,12 @@
                     android:id="@+id/seller_laptop_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -217,12 +217,12 @@
                     android:id="@+id/seller_electronic_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -261,12 +261,12 @@
                     android:id="@+id/seller_sport_clothes_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -305,12 +305,12 @@
                     android:id="@+id/seller_womens_fashion_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -349,12 +349,12 @@
                     android:id="@+id/seller_glasses_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -399,7 +399,7 @@
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="29dp"
-                app:cardElevation="0dp"
+                app:cardElevation="8dp"
                 app:cardMaxElevation="0dp">
 
                 <LinearLayout
@@ -437,12 +437,12 @@
                     android:id="@+id/seller_Restaurants_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
 
@@ -482,12 +482,12 @@
                     android:id="@+id/seller_beauty_cart_frag"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="5dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="29dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="8dp"
                     app:cardMaxElevation="0dp">
 
                     <LinearLayout
@@ -530,7 +530,7 @@
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="29dp"
-                app:cardElevation="0dp"
+                app:cardElevation="8dp"
                 app:cardMaxElevation="0dp">
 
                 <LinearLayout

@@ -1,4 +1,9 @@
 package com.aramadan.aswan.home.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -64,13 +71,13 @@ public class ConfirmFinalOrder extends AppCompatActivity {
     private void CheckOrder() {
 
         if (TextUtils.isEmpty(shipmentName.getText().toString())) {
-            shipmentName.setError("Please Provide Your full Name.");
+            shipmentName.setError(getString(R.string.PleaseProvideYourfullName));
         } else if (TextUtils.isEmpty(shipmentPhoneNumber.getText().toString())) {
-            shipmentPhoneNumber.setError("Please Provide Your Phone Number.");
+            shipmentPhoneNumber.setError(getString(R.string.PleaseProvideYourPhoneNumber));
         } else if (TextUtils.isEmpty(shipmentHomeAddress.getText().toString())) {
-            shipmentHomeAddress.setError("Please Provide Your Home Address.");
+            shipmentHomeAddress.setError(getString(R.string.PleaseProvideYourHomeAddress));
         } else if (TextUtils.isEmpty(shipmentOrdersDetails.getText().toString())) {
-            shipmentOrdersDetails.setError("Please Provide Your Details.");
+            shipmentOrdersDetails.setError(getString(R.string.PleaseProvideYourDetails));
         }else {
             ConfirmOrder();
         }
@@ -90,9 +97,10 @@ public class ConfirmFinalOrder extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        String userN = mAuth.getCurrentUser().getUid();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ConfirmFinalOrder.this);
+        String user_Uid = preferences.getString("user_id","");
 
-        final DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(userN);
+        final DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(user_Uid);
 
         final HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("totalAmount", totalAmount);
@@ -110,16 +118,16 @@ public class ConfirmFinalOrder extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     FirebaseDatabase.getInstance().getReference().child("Cart List")
                             .child("User View")
-                            .child(userN)
+                            .child(user_Uid)
                             .removeValue()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(ConfirmFinalOrder.this, "Your final order has been placed successfully.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ConfirmFinalOrder.this, R.string.Youfinalorderasbeenplacedsuccessfully, Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(ConfirmFinalOrder.this, HomeActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                         finish();
 

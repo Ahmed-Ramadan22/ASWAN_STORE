@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Admin.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -6,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -30,16 +36,15 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
     private RecyclerView ordersList;
     private DatabaseReference ordersRef;
-    private FirebaseAuth mAuth;
 
-    private NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+
+    private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_orders);
 
-        mAuth = FirebaseAuth.getInstance();
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
 
         ordersList = findViewById(R.id.newOrder_list_ry);
@@ -52,7 +57,6 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListener, filter);
         super.onStart();
-       // String userN = mAuth.getCurrentUser().getUid();
 
         FirebaseRecyclerOptions<AdminOrders> options = new FirebaseRecyclerOptions.Builder<AdminOrders>()
                 .setQuery(ordersRef, AdminOrders.class)
@@ -60,15 +64,17 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder> adapter = new FirebaseRecyclerAdapter
                 <AdminOrders, AdminOrdersViewHolder>(options) {
+            @SuppressLint("SetTextI18n")
             @Override
             protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, int position, @NonNull AdminOrders model) {
 
                 holder.userName.setText(model.getName());
                 holder.userPhoneNumber.setText(model.getPhone());
-                holder.userTotalPrice.setText(model.getTotalAmount());
-                holder.userDateTime.setText(model.getDate() + ", " + model.getTime());
-                holder.userShippingAddress.setText(model.getAddress());
                 holder.userOrderDetails.setText(model.getOrderDetails());
+                holder.userTotalPrice.setText(model.getTotalAmount());
+                holder.userDateTime.setText(model.getDate() + "," + model.getTime());
+                holder.userShippingAddress.setText(model.getAddress());
+
 
                 holder.showOrdersBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -87,12 +93,12 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                     public void onClick(View v) {
                             CharSequence options [] = new CharSequence[]{
 
-                                    "yes",
-                                    "No"
+                                    getString(R.string.yes),
+                                    getString(R.string.no)
                             };
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(AdminNewOrdersActivity.this);
-                        builder.setTitle("Have you shipped this order Products ?");
+                        builder.setTitle(R.string.shipped);
 
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override

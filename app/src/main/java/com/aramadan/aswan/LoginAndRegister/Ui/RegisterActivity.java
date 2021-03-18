@@ -1,4 +1,9 @@
 package com.aramadan.aswan.LoginAndRegister.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +27,7 @@ import android.widget.Toast;
 import com.aramadan.aswan.LoginAndRegister.Models.Users;
 import com.aramadan.aswan.Network.NetworkChangeListener;
 import com.aramadan.aswan.R;
+import com.aramadan.aswan.Sellers.View.SellerRegistrationActivity;
 import com.aramadan.aswan.home.Ui.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +38,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import static com.aramadan.aswan.R.string.CreateAccountSuccessfully;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText email_sigUp_edt, phone_sigUp_edt, pass_sigUp_edt, userName_sigUp_edt;
@@ -39,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     DatabaseReference myRootRef = FirebaseDatabase.getInstance().getReference();
-    private NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +97,16 @@ public class RegisterActivity extends AppCompatActivity {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if (TextUtils.isEmpty(email) || !email.matches(emailPattern)) {
-            email_sigUp_edt.setError("Invalid email address");
+            email_sigUp_edt.setError(getString(R.string.Invalidemailaddress));
         } else if (TextUtils.isEmpty(phone) || !(phone.length() == 11)) {
-            phone_sigUp_edt.setError("Invalid your Phone Number");
+            phone_sigUp_edt.setError(getString(R.string.InvalidyourPhoneNumber));
         } else if (TextUtils.isEmpty(password) || !(password.length() >= 8)) {
-            pass_sigUp_edt.setError("You must have 8 characters in your password");
+            pass_sigUp_edt.setError(getString(R.string.Yomusthave8characters));
         } else if (TextUtils.isEmpty(userName)) {
-            userName_sigUp_edt.setError("Please write your User Name.");
+            userName_sigUp_edt.setError(getString(R.string.PleasewriteyourUserName));
         } else {
-            loadingBar.setTitle("Create Account");
-            loadingBar.setMessage("Please wait, While we are checking the Credentials. ");
+            loadingBar.setTitle(getString(R.string.CreateAccount));
+            loadingBar.setMessage(getString(R.string.Credentials));
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
@@ -121,19 +131,26 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this, "Create Account has been Successfully.", Toast.LENGTH_SHORT).show();
+
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RegisterActivity.this);
+                                    SharedPreferences.Editor editor = preferences.edit();
+
+                                    editor.putString("user_id", uid);
+                                    editor.apply();
+
+                                    Toast.makeText(RegisterActivity.this, CreateAccountSuccessfully, Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
                                     Intent in = new Intent(RegisterActivity.this, HomeActivity.class);
                                     startActivity(in);
                                 }else {
-                                    Toast.makeText(RegisterActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, R.string.Failedtologin, Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
                                 }
                             }
                         });
                     }else {
-                        Toast.makeText(RegisterActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, R.string.Failedtologin, Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                     }
 

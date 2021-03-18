@@ -1,22 +1,18 @@
 package com.aramadan.aswan.home.fragmants;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,35 +25,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
 
-import com.aramadan.aswan.LoginAndRegister.Models.Users;
-import com.aramadan.aswan.LoginAndRegister.Prevalent.Prevalent;
 import com.aramadan.aswan.LoginAndRegister.Ui.MainActivity;
 import com.aramadan.aswan.R;
-import com.aramadan.aswan.home.Model.Products;
-import com.aramadan.aswan.home.Ui.HomeActivity;
-import com.aramadan.aswan.home.Ui.ProductDetailsActivity;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
-import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
+import com.google.firebase.auth.FirebaseAuth;
 import java.util.Locale;
 import java.util.Objects;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.app.Activity.RESULT_OK;
-
 
 public class AboutFragment extends Fragment {
 

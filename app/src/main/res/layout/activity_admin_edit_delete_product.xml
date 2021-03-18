@@ -20,9 +20,9 @@
                 <ImageView
                     android:id="@+id/image_logo"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="63dp"
                     android:src="@drawable/as_logo"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -31,8 +31,8 @@
                     android:textSize="21sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -49,9 +49,9 @@
                     android:textSize="21sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -59,8 +59,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:id="@+id/Admin_recycler_home_products"
-                    />
+                    android:id="@+id/Admin_recycler_home_products" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -69,8 +68,8 @@
                     android:textSize="21sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -87,8 +86,8 @@
                     android:textSize="21sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -105,8 +104,8 @@
                     android:textSize="21sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -123,8 +122,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -141,8 +140,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -159,8 +158,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -177,8 +176,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -195,8 +194,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -213,8 +212,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ColorTextDark"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -224,6 +223,23 @@
                     android:layout_marginEnd="5dp"
                     android:id="@+id/Admin_recycler_restaurants_products" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/handmade"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ColorTextDark"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/Admin_recycler_handmade_products"/>
             </LinearLayout>
 
         </ScrollView>

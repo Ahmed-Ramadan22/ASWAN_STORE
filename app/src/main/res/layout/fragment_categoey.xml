@@ -14,7 +14,7 @@
             android:id="@+id/txt_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:text="@string/categories"
@@ -35,29 +35,22 @@
                 android:id="@+id/lin_category_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/offers_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -97,13 +90,13 @@
                         android:id="@+id/mobile_card_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
-                        app:cardMaxElevation="0dp">
+                        app:cardElevation="8dp"
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -141,12 +134,12 @@
                         android:id="@+id/man_Fashion_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -185,12 +178,12 @@
                         android:id="@+id/laptop_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -228,12 +221,12 @@
                         android:id="@+id/electronic_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -272,12 +265,12 @@
                         android:id="@+id/sport_clothes_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -316,13 +309,12 @@
                         android:id="@+id/woman_fashion_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
-                        app:cardMaxElevation="0dp">
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -360,12 +352,12 @@
                         android:id="@+id/glasses_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -405,12 +397,12 @@
                         android:id="@+id/home_essentials_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -448,12 +440,12 @@
                         android:id="@+id/Restaurants_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
 
@@ -493,12 +485,12 @@
                         android:id="@+id/beauty_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
                         app:cardMaxElevation="0dp">
 
                         <LinearLayout
@@ -536,13 +528,12 @@
                         android:id="@+id/handmade_cart_frag"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="29dp"
-                        app:cardElevation="0dp"
-                        app:cardMaxElevation="0dp">
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -575,8 +566,6 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
 
             </LinearLayout>
 

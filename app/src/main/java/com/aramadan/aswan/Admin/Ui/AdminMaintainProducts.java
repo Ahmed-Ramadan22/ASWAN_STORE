@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Admin.Ui;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+
+import static com.aramadan.aswan.R.string.ChangesAppliedSuccessfull;
+import static com.aramadan.aswan.R.string.ProductDeleted;
 
 public class AdminMaintainProducts extends AppCompatActivity {
 
@@ -90,7 +98,7 @@ public class AdminMaintainProducts extends AppCompatActivity {
                 startActivity(intent);
                 finish();
 
-                Toast.makeText(AdminMaintainProducts.this, "The Product is Deleted Successfully.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminMaintainProducts.this, ProductDeleted, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -106,11 +114,11 @@ public class AdminMaintainProducts extends AppCompatActivity {
         String Desc  = descriptionEdt.getText().toString();
 
         if (Name.equals("")){
-            nameEdt.setError("Input Product Name .. ");
+            nameEdt.setError(getString(R.string.InputProductName));
         } else  if (Price.equals("")){
-            nameEdt.setError("Input Product Price ..");
+            nameEdt.setError(getString(R.string.InputProductPrice));
         } else  if (Desc.equals("")){
-            nameEdt.setError("Input Product Description ..");
+            nameEdt.setError(getString(R.string.InputProductDescription));
         } else {
             HashMap <String, Object> productMap = new HashMap<>();
 
@@ -123,7 +131,7 @@ public class AdminMaintainProducts extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(AdminMaintainProducts.this, "Changes Applied Successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminMaintainProducts.this, ChangesAppliedSuccessfull, Toast.LENGTH_SHORT).show();
 
                         progressBar.setVisibility(View.GONE);
                         applyChangesBtn.setVisibility(View.VISIBLE);

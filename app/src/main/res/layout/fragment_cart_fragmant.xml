@@ -50,6 +50,7 @@
                 android:textColor="@color/ColorTextDarksows"
                 android:textSize="16sp"
                 android:text="@string/total"
+                android:gravity="fill"
                 android:textAllCaps="true"
                 android:textStyle="bold"/>
 
@@ -84,7 +85,7 @@
             android:id="@+id/cart_cal_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/ColorTextSkip"
+            android:background="@drawable/button_back_dark"
             android:layout_weight="1"
             android:shadowColor="@color/ColorTextDark"
             android:shadowDx="2"

@@ -1,5 +1,11 @@
 package com.aramadan.aswan.Admin.Ui;
 
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,8 +86,8 @@ public class AdminCheckNewProductActivity extends AppCompatActivity {
                                 final String productID = model.getPid();
                                 CharSequence options[] = new CharSequence[]{
 
-                                        "Yes",
-                                        "No"
+                                        getString(R.string.yes),
+                                        getString(R.string.no)
                                 };
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(AdminCheckNewProductActivity.this);

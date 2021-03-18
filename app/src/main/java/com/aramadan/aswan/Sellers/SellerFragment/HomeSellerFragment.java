@@ -1,6 +1,12 @@
 package com.aramadan.aswan.Sellers.SellerFragment;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +24,7 @@ import android.widget.Toast;
 
 import com.aramadan.aswan.Admin.Ui.AdminCheckNewProductActivity;
 import com.aramadan.aswan.R;
+import com.aramadan.aswan.Sellers.View.SellerAddNewProductActivity;
 import com.aramadan.aswan.Sellers.ViewHolder.ItemViewHolder;
 import com.aramadan.aswan.home.Model.Products;
 import com.aramadan.aswan.home.ViewHolder.ProductViewHolder;
@@ -28,6 +36,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import static com.aramadan.aswan.R.string.ThatitemhasbeenDeleted;
 
 public class HomeSellerFragment extends Fragment {
 
@@ -63,10 +73,13 @@ public class HomeSellerFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String sellerUid = preferences.getString("seller_id","");
+
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(unVerifiedProductRef.orderByChild("uid")
-                                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid()),Products.class)
+                                .equalTo(sellerUid),Products.class)
                         .build();
 
 
@@ -87,12 +100,12 @@ public class HomeSellerFragment extends Fragment {
                                 final String productID = model.getPid();
                                 CharSequence options[] = new CharSequence[] {
 
-                                        "Yes",
-                                        "No"
+                                        getString(R.string.yes),
+                                        getString(R.string.no)
                                 };
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("Do you want to Delete this Product. Are you Sure?");
+                                builder.setTitle(R.string.DeleteProduct);
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int position) {
@@ -136,7 +149,7 @@ public class HomeSellerFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getContext(), "That item has been Deleted.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), ThatitemhasbeenDeleted, Toast.LENGTH_SHORT).show();
                     }
                 });
 

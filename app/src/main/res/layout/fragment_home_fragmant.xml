@@ -29,7 +29,7 @@
                 android:textSize="21sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -48,7 +48,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -67,7 +67,7 @@
                 android:textSize="21sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -85,7 +85,7 @@
                 android:textSize="21sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -103,7 +103,7 @@
                 android:textSize="21sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -121,7 +121,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -139,7 +139,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -157,7 +157,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -175,7 +175,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -193,7 +193,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -211,7 +211,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -229,7 +229,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ColorTextDark"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView

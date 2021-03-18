@@ -1,4 +1,9 @@
 package com.aramadan.aswan.Sellers.View;
+/**
+ * Created by:
+ *    Ahmedtramadan4@gmail.com
+ *    2/2021
+ */
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +26,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.aramadan.aswan.Admin.Ui.AdminLoginActivity;
 import com.aramadan.aswan.Network.NetworkChangeListener;
 import com.aramadan.aswan.R;
+import com.aramadan.aswan.home.Ui.HomeActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,6 +49,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Objects;
+
+import static com.aramadan.aswan.R.string.mandatory;
 
 public class SellerAddNewProductActivity extends AppCompatActivity {
 
@@ -93,7 +104,11 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
             }
         });
 
-        sellerRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SellerAddNewProductActivity.this);
+        String sellerUid = preferences.getString("seller_id","");
+
+
+        sellerRef.child(sellerUid)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -122,13 +137,13 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
         ProdName = inputNameProduct.getText().toString();
 
         if (ImageUri == null) {
-            Toast.makeText(this, "Product Image is mandatory ... ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, mandatory, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(Description)) {
-            inputDescProduct.setError("Input Description .. ");
+            inputDescProduct.setError(getString(R.string.InputDescription));
         } else if (TextUtils.isEmpty(Price)) {
-            inputPriceProduct.setError("Input Price .. ");
+            inputPriceProduct.setError(getString(R.string.InputPrice));
         } else if (TextUtils.isEmpty(ProdName)) {
-            inputNameProduct.setError("Input Price .. ");
+            inputNameProduct.setError(getString(R.string.InputName));
         } else {
             StoreProductInformation();
         }
@@ -185,24 +200,7 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             downloadImageUri = task.getResult().toString();
 
-//                            Thread thread=new Thread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//
-//                                    while (block == false) {
-//                                        try {
-//                                            Thread.sleep(500);
-//                                        } catch (InterruptedException e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    }
                                     SaveProductInfoToDatabase();
-//                                    block = false ;
-//                                }
-//                            });
-//                            thread.start();
-
-
                         }
                     }
                 });
