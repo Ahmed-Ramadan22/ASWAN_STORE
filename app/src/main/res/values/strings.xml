@@ -130,7 +130,7 @@
     <string name="InputProductDescription">Input Product Description ..</string>
     <string name="ChangesAppliedSuccessfull">Changes Applied Successfully.</string>
     <string name="ItemRemovedSuccessfully">Item Removed Successfully ..</string>
-    <string name="CartOptions">Cart Options:</string>
+    <string name="CartOptions">Do you want to remove the product from the cart?</string>
     <string name="EDIT">Edit</string>
     <string name="REMOVE">Remove</string>
     <string name="PleaseProvideYourfullName">Please Provide Your full Name.</string>

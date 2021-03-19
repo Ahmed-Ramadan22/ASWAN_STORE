@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.aramadan.aswan.R;
 import com.aramadan.aswan.home.Model.Cart;
+import com.aramadan.aswan.home.Model.Products;
 import com.aramadan.aswan.home.Ui.ConfirmFinalOrder;
 import com.aramadan.aswan.home.Ui.ProductDetailsActivity;
 import com.aramadan.aswan.home.ViewHolder.CartViewHolder;
@@ -42,9 +43,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import static com.aramadan.aswan.R.string.ItemRemovedSuccessfully;
+import static com.aramadan.aswan.home.Ui.ProductDetailsActivity.PRODUCT;
 
 
 public class CartFragment extends Fragment {
@@ -52,7 +55,7 @@ public class CartFragment extends Fragment {
     private RecyclerView recyclerView;
     private Button nextProcessBtn, cartCalBtn;
     private TextView txtTotalAmount;
-    private FirebaseAuth mAuth;
+    private Products productDetails;
 
     private float overTotalPrice = 0;
 
@@ -63,8 +66,8 @@ public class CartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        productDetails = new Gson().fromJson( getActivity().getIntent().getStringExtra(PRODUCT),Products.class);
 
-        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -111,15 +114,15 @@ public class CartFragment extends Fragment {
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
-        FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>()
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(cartListRef.child("User View")
-                        .child(user_Uid).child("Products"), Cart.class)
+                        .child(user_Uid).child("Products"), Products.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
+        FirebaseRecyclerAdapter<Products, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Products, CartViewHolder>(options) {
             @SuppressLint("SetTextI18n")
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
+            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Products model) {
 
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductQuantity.setText(model.getQuantity());
@@ -139,7 +142,6 @@ public class CartFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         CharSequence[] options = new CharSequence[]{
-                                getString(R.string.EDIT),
                                 getString(R.string.REMOVE)
                         };
 
@@ -150,11 +152,6 @@ public class CartFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
                                 if (i == 0) {
-                                    Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-                                }
-                                if (i == 1) {
                                     cartListRef.child("User View")
                                             .child(user_Uid)
                                             .child("Products")

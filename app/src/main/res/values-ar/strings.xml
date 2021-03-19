@@ -124,7 +124,7 @@
     <string name="InputProductDescription">إدخال تفاصيل المنتج.</string>
     <string name="ChangesAppliedSuccessfull">تم تطبيق التغييرات بنجاح.</string>
     <string name="ItemRemovedSuccessfully">تمت إزالة العنصر بنجاح.</string>
-    <string name="CartOptions">خيارات عربة التسوق:</string>
+    <string name="CartOptions">هل تريد حذف المنتج من السلة؟</string>
     <string name="EDIT">تعديل</string>
     <string name="PleaseProvideYourfullName">يرجى تقديم اسمك الكامل.</string>
     <string name="PleaseProvideYourPhoneNumber">يرجى تقديم رقم هاتفك.</string>

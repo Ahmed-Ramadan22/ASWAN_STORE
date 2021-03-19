@@ -17,9 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aramadan.aswan.Admin.Model.AdminCartViewHolder;
 import com.aramadan.aswan.Network.NetworkChangeListener;
 import com.aramadan.aswan.R;
 import com.aramadan.aswan.home.Model.Cart;
+import com.aramadan.aswan.home.Model.Products;
 import com.aramadan.aswan.home.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -32,6 +34,8 @@ public class AdminUserProductActivity extends AppCompatActivity {
     private RecyclerView productsList;
     RecyclerView.LayoutManager layoutManager;
     private DatabaseReference cartListRef;
+
+    private Products productsDe;
 
     private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
@@ -56,30 +60,38 @@ public class AdminUserProductActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListener, filter);
         super.onStart();
 
-        FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(cartListRef, Cart.class)
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(cartListRef, Products.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
+        FirebaseRecyclerAdapter<Products, AdminCartViewHolder> adapter = new FirebaseRecyclerAdapter<Products, AdminCartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
+            protected void onBindViewHolder(@NonNull AdminCartViewHolder holder, int position, @NonNull Products model) {
 
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductQuantity.setText(model.getQuantity());
                 holder.txtProductPrice.setText(model.getPrice());
+                holder.txtSellerName.setText(model.getSellerName());
+                holder.txtSellerPhone.setText(model.getSellerPhone());
+                holder.txtSellerAddress.setText(model.getSellerAddress());
                 Picasso.get().load(model.getImage()).into(holder.imgProduct);
 
             }
 
             @NonNull
             @Override
-            public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_cart_item_layout, parent, false);
-                return new CartViewHolder(view);
+            public AdminCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.admin_cart_item_layout,
+                                parent,
+                                false);
+
+                return new AdminCartViewHolder(view);
             }
         };
 

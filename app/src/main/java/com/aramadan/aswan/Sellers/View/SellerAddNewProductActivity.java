@@ -67,7 +67,6 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
     private DatabaseReference productsRef, sellerRef;
     private ProgressBar progressBar;
 
-    private static boolean block = false;
     private String sName, sAddress, sPhone, sEmail, uID;
 
     private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
@@ -113,7 +112,6 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            block = true;
                             sName = snapshot.child("sellerName").getValue().toString();
                             sAddress = snapshot.child("sellerAddress").getValue().toString();
                             sPhone = snapshot.child("sellerPhone").getValue().toString();
@@ -123,7 +121,7 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        block = true;
+
                     }
                 });
 
@@ -234,13 +232,11 @@ public class SellerAddNewProductActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-
                             progressBar.setVisibility(View.GONE);
                             addNewProductBtn.setVisibility(View.VISIBLE);
                             addNewProductBtn.setText("Done");
                             Intent in = new Intent(SellerAddNewProductActivity.this, SellerHomeActivity.class);
                             startActivity(in);
-
                         } else {
                             progressBar.setVisibility(View.GONE);
                             addNewProductBtn.setVisibility(View.VISIBLE);

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.aramadan.aswan"
-        minSdkVersion 24
+        minSdkVersion 18
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

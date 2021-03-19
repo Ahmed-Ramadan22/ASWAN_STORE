@@ -18,8 +18,10 @@ import com.aramadan.aswan.adapter.ClickableAction;
 import com.aramadan.aswan.adapter.Filter;
 import com.aramadan.aswan.adapter.ProductHolderAdapter;
 import com.aramadan.aswan.home.Model.Products;
+import com.aramadan.aswan.home.Ui.ProductDetailsActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 public class AdminEditDeleteProductActivity extends AppCompatActivity {
 
@@ -117,6 +119,15 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
     }
 
 
+    private void onClick(Products products) {
+
+        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
+        intent.putExtra("pid", products.getPid());
+        intent.putExtra(ProductDetailsActivity.PRODUCT,new Gson().toJson(products));
+        startActivity(intent);
+
+    }
+
     private void _rvHandmadeProd() {
 
         rvHandMade.setAdapter(new ProductHolderAdapter(
@@ -128,17 +139,12 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Handmade") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-
-                    }
-                }));
+                },this::onClick
+        ));
     }
+
+
+
 
     private void _beautyProduct() {
 
@@ -151,15 +157,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Beauty") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                },this::onClick));
 
     }
 
@@ -174,15 +172,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Man's Fashion") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                }, this::onClick));
     }
 
     private void _rvRestaurantsProd() {
@@ -196,15 +186,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Restaurants") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                },this::onClick));
     }
 
     private void _rvEssentialsProd() {
@@ -219,14 +201,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Home Essentials") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -242,14 +217,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Women's Fashion") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
     }
 
     private void _rvWatchesProd() {
@@ -264,14 +232,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Watches") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
     }
 
     private void _rvSportClothes() {
@@ -286,14 +247,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Sports Clothes") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -309,14 +263,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Electronics & Accessories") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
     }
 
     private void _laptopsProduct() {
@@ -330,14 +277,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Laptops") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -353,14 +293,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Mobile & Tablets") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -376,14 +309,7 @@ public class AdminEditDeleteProductActivity extends AppCompatActivity {
                         return products.getCategory().equals("Offers") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(AdminEditDeleteProductActivity.this, AdminMaintainProducts.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 

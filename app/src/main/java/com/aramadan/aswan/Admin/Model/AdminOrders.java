@@ -2,12 +2,12 @@ package com.aramadan.aswan.Admin.Model;
 
 public class AdminOrders {
 
-    private String name, phone, address, state, date, time, totalAmount, image, orderDetails ;
+    private String name, phone, address, state, date, time, totalAmount, image, detailsOrder ;
 
     public AdminOrders() {
     }
 
-    public AdminOrders(String name, String phone, String address, String state, String date, String time, String totalAmount, String image, String orderDetails) {
+    public AdminOrders(String name, String phone, String address, String state, String date, String time, String totalAmount, String image, String detailsOrder) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -16,7 +16,7 @@ public class AdminOrders {
         this.time = time;
         this.totalAmount = totalAmount;
         this.image = image;
-        this.orderDetails = orderDetails;
+        this.detailsOrder = detailsOrder;
     }
 
     public String getName() {
@@ -83,11 +83,11 @@ public class AdminOrders {
         this.image = image;
     }
 
-    public String getOrderDetails() {
-        return orderDetails;
+    public String getDetailsOrder() {
+        return detailsOrder;
     }
 
-    public void setOrderDetails(String orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setDetailsOrder(String detailsOrder) {
+        this.detailsOrder = detailsOrder;
     }
 }

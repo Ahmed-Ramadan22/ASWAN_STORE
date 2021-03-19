@@ -1,8 +1,8 @@
 package com.aramadan.aswan.home.Ui;
 /**
  * Created by:
- *    Ahmedtramadan4@gmail.com
- *    2/2021
+ * Ahmedtramadan4@gmail.com
+ * 2/2021
  */
 
 import androidx.annotation.NonNull;
@@ -11,12 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.sax.ElementListener;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,8 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aramadan.aswan.LoginAndRegister.Models.Users;
-import com.aramadan.aswan.LoginAndRegister.Prevalent.Prevalent;
 import com.aramadan.aswan.Network.NetworkChangeListener;
 import com.aramadan.aswan.R;
 import com.aramadan.aswan.home.Model.Products;
@@ -33,14 +28,8 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -64,10 +53,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
-    private DatabaseReference sellerRef;
-
-    private String sName, sAddress, sPhone, sEmail, uID;
-
     private Products productDetails;
 
     private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
@@ -78,9 +63,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         productID = getIntent().getStringExtra("pid");
-        sellerRef = FirebaseDatabase.getInstance().getReference().child("Sellers");
 
-        productDetails = new Gson().fromJson( getIntent().getStringExtra(PRODUCT),Products.class);
+        productDetails = new Gson().fromJson(getIntent().getStringExtra(PRODUCT), Products.class);
 
         initializeViews();
         getProductDetails();
@@ -89,32 +73,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                        addingToCartList();
+                addingToCartList();
             }
         });
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ProductDetailsActivity.this);
-        String sellerUid = preferences.getString("seller_id","");
 
-        sellerRef.child(sellerUid)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        if (snapshot.exists()) {
-                            sName = snapshot.child("sellerName").getValue().toString();
-                            sAddress = snapshot.child("sellerAddress").getValue().toString();
-                            sPhone = snapshot.child("sellerPhone").getValue().toString();
-                            uID = snapshot.child("uid").getValue().toString();
-                            sEmail = snapshot.child("sellerEmail").getValue().toString();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
     }
 
     private void addingToCartList() {
@@ -182,10 +145,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private void getProductDetails() {
 
-        productName.setText(productDetails.getPname());
-        productDes.setText(productDetails.getDescription());
-        productPrice.setText(productDetails.getPrice());
-        Picasso.get().load(productDetails.getImage()).into(productImage);
+        try {
+            productName.setText(productDetails.getPname());
+            productDes.setText(productDetails.getDescription());
+            productPrice.setText(productDetails.getPrice());
+            Picasso.get().load(productDetails.getImage()).into(productImage);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 

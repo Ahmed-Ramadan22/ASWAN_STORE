@@ -138,6 +138,18 @@ public class HomeFragment extends Fragment {
 
     }
 
+
+
+    private void onClick(Products products) {
+
+        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
+        intent.putExtra("pid", products.getPid());
+        intent.putExtra(ProductDetailsActivity.PRODUCT,new Gson().toJson(products));
+        startActivity(intent);
+
+
+    }
+
     private void _rvHandmadeProd() {
 
         rvHandMade.setAdapter(new ProductHolderAdapter(
@@ -153,15 +165,7 @@ public class HomeFragment extends Fragment {
             ));
     }
 
-    private void onClick(Products products) {
 
-                Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                intent.putExtra("pid", products.getPid());
-                intent.putExtra(ProductDetailsActivity.PRODUCT,new Gson().toJson(products));
-                startActivity(intent);
-
-
-    }
 
 
     private void _beautyProduct() {
@@ -204,15 +208,7 @@ public class HomeFragment extends Fragment {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Restaurants") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                },this::onClick));
     }
 
     private void _rvEssentialsProd() {
@@ -227,14 +223,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Home Essentials") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -250,14 +239,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Women's Fashion") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
     }
 
     private void _rvWatchesProd() {
@@ -272,14 +254,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Watches") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
     }
 
     private void _rvSportClothes() {
@@ -294,14 +269,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Sports Clothes") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -317,14 +285,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Electronics & Accessories") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
     }
 
     private void _laptopsProduct() {
@@ -338,14 +299,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Laptops") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -361,14 +315,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Mobile & Tablets") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 
@@ -384,14 +331,7 @@ public class HomeFragment extends Fragment {
                         return products.getCategory().equals("Offers") && products.getProductState().equals("Approved");
                     }
                 },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                this::onClick));
 
     }
 

@@ -25,11 +25,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aramadan.aswan.LoginAndRegister.Models.Users;
-import com.aramadan.aswan.LoginAndRegister.Prevalent.Prevalent;
 import com.aramadan.aswan.LoginAndRegister.Ui.LoginActivity;
 import com.aramadan.aswan.Network.NetworkChangeListener;
 import com.aramadan.aswan.R;
-import com.aramadan.aswan.home.Ui.HomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,7 +41,6 @@ public class AdminLoginActivity extends AppCompatActivity {
 
     public  static final String USER_TYPE = "uesrtype";
     private EditText email_admin_edt, password_admin_edt, userName_admin_edt;
-    private ProgressDialog loadingBar;
     private Button adminLogin;
 
     private TextView go_to_signIn;
@@ -54,7 +51,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     private String parentDbName = "Admins";
 
 
-    private NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
 
     @Override
@@ -67,7 +64,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         userName_admin_edt = findViewById(R.id.userName_admin_edt);
         notAdmin_lay = findViewById(R.id.notAdmin_lay);
         go_to_signIn = findViewById(R.id.go_to_signIn);
-        loadingBar = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
 
         adminLogin = findViewById(R.id.login_admin_btn);
@@ -132,15 +128,16 @@ public class AdminLoginActivity extends AppCompatActivity {
                     if (usersData.getEmail().equals(email) || usersData.getPassword().equals(password) ){
                             if (parentDbName.equals("Admins")){
 
-                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(AdminLoginActivity.this);
-                                SharedPreferences.Editor editor = preferences.edit();
-
-                                editor.putInt(USER_TYPE, 1);
-                                editor.apply();
+//                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(AdminLoginActivity.this);
+//                                SharedPreferences.Editor editor = preferences.edit();
+//
+//                                editor.putInt(USER_TYPE, 1);
+//                                editor.apply();
                                 
                                 Toast.makeText(AdminLoginActivity.this, sucess, Toast.LENGTH_SHORT).show();
                                 dialogLoading.dismiss();
                                 startActivity(new Intent(AdminLoginActivity.this, AdminHomeActivity.class));
+                                finish();
                             }
                     }else {
                         email_admin_edt.setError(getString(R.string.InCorrect_Email_and_Password));
