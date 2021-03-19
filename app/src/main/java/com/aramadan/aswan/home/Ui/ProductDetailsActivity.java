@@ -41,6 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -51,6 +52,7 @@ import static com.aramadan.aswan.R.string.AddedtoCartList;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
+    public static final String PRODUCT = "PRODUCT_DETAILS";
     private ImageView productImage;
     private TextView productName, productDes, productPrice;
     private Button addToCartBtn;
@@ -61,11 +63,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ProgressBar progressBar;
-    private Products products;
 
     private DatabaseReference sellerRef;
 
     private String sName, sAddress, sPhone, sEmail, uID;
+
+    private Products productDetails;
 
     private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
@@ -77,8 +80,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productID = getIntent().getStringExtra("pid");
         sellerRef = FirebaseDatabase.getInstance().getReference().child("Sellers");
 
+        productDetails = new Gson().fromJson( getIntent().getStringExtra(PRODUCT),Products.class);
+
         initializeViews();
-        getProductDetails(productID);
+        getProductDetails();
 
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,20 +138,18 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String userN = mAuth.getCurrentUser().getUid();
 
         final HashMap<String, Object> cartMap = new HashMap<>();
-        cartMap.put("pid", productID);
-        cartMap.put("pname", products.getPname());
-        cartMap.put("price", products.getPrice());
+        cartMap.put("pid", productDetails.getPid());
+        cartMap.put("pname", productDetails.getPname());
+        cartMap.put("price", productDetails.getPrice());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
-        cartMap.put("image", products.getImage());
+        cartMap.put("image", productDetails.getImage());
 
-        cartMap.put("sellerName", sName);
-        cartMap.put("sellerAddress", sAddress);
-        cartMap.put("sellerPhone", sPhone);
-        cartMap.put("sellerEmail", sEmail);
-        cartMap.put("uid", uID);
-
+        cartMap.put("sellerName", productDetails.getSellerName());
+        cartMap.put("sellerAddress", productDetails.getSellerAddress());
+        cartMap.put("sellerPhone", productDetails.getSellerPhone());
+        cartMap.put("sellerEmail", productDetails.getSellerEmail());
 
         cartListRef.child("User View").child(userN)
                 .child("Products").child(productID)
@@ -176,30 +179,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void getProductDetails(String productID) {
 
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+    private void getProductDetails() {
 
-        productsRef.child(productID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (snapshot.exists()) {
-                    products = snapshot.getValue(Products.class);
-
-                    productName.setText(products.getPname());
-                    productDes.setText(products.getDescription());
-                    productPrice.setText(products.getPrice());
-                    Picasso.get().load(products.getImage()).into(productImage);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        productName.setText(productDetails.getPname());
+        productDes.setText(productDetails.getDescription());
+        productPrice.setText(productDetails.getPrice());
+        Picasso.get().load(productDetails.getImage()).into(productImage);
 
     }
 

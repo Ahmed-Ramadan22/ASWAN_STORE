@@ -90,7 +90,6 @@ public class SearchFragment extends Fragment {
 
         Query firebaseSearchQuery = mUserDatabase.orderByChild("pname").startAt(searchText).endAt(searchText + "\uf8ff");
 
-
         searchList.setAdapter(new ProductHolderAdapter(
                 R.layout.offars_item_cart,
                 firebaseSearchQuery,

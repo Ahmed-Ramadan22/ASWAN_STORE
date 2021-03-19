@@ -5,42 +5,28 @@ package com.aramadan.aswan.home.fragmants;
  *    2/2021
  */
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.aramadan.aswan.Admin.Ui.AdminLoginActivity;
-import com.aramadan.aswan.Admin.Ui.AdminMaintainProducts;
 import com.aramadan.aswan.R;
 import com.aramadan.aswan.adapter.ClickableAction;
 import com.aramadan.aswan.adapter.Filter;
 import com.aramadan.aswan.adapter.ProductHolderAdapter;
 import com.aramadan.aswan.home.Model.Products;
-import com.aramadan.aswan.home.Ui.HomeActivity;
 import com.aramadan.aswan.home.Ui.ProductDetailsActivity;
-import com.aramadan.aswan.home.ViewHolder.OffersViewHolder;
-import com.aramadan.aswan.home.ViewHolder.ProductViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-
-import io.paperdb.Paper;
-
-import static android.view.View.GONE;
+import com.google.gson.Gson;
 
 
 public class HomeFragment extends Fragment {
@@ -163,16 +149,20 @@ public class HomeFragment extends Fragment {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Handmade") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                },this::onClick
+            ));
     }
+
+    private void onClick(Products products) {
+
+                Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
+                intent.putExtra("pid", products.getPid());
+                intent.putExtra(ProductDetailsActivity.PRODUCT,new Gson().toJson(products));
+                startActivity(intent);
+
+
+    }
+
 
     private void _beautyProduct() {
 
@@ -185,15 +175,7 @@ public class HomeFragment extends Fragment {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Beauty") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                },this::onClick));
 
     }
 
@@ -208,15 +190,7 @@ public class HomeFragment extends Fragment {
                     public boolean filter(Products products) {
                         return products.getCategory().equals("Man's Fashion") && products.getProductState().equals("Approved");
                     }
-                },
-                new ClickableAction<Products>() {
-                    @Override
-                    public void onClick(Products item) {
-                        Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("pid", item.getPid());
-                        startActivity(intent);
-                    }
-                }));
+                }, this::onClick));
     }
 
     private void _rvRestaurantsProd() {

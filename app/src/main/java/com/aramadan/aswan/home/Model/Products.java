@@ -2,12 +2,13 @@ package com.aramadan.aswan.home.Model;
 
 public class Products {
 
-    private String  description , price, pname, image, category,pid, date, time, productState;
+    private String  description , price, pname, image, category,pid, date, time, productState,sellerAddress
+            ,sellerEmail,sellerName,sellerPhone;
 
     public Products() {
     }
 
-    public Products(String description, String price, String pname, String image, String category, String pid, String date, String time, String productState) {
+    public Products(String description, String price, String pname, String image, String category, String pid, String date, String time, String productState, String sellerAddress, String sellerEmail, String sellerName, String sellerPhone) {
         this.description = description;
         this.price = price;
         this.pname = pname;
@@ -17,7 +18,12 @@ public class Products {
         this.date = date;
         this.time = time;
         this.productState = productState;
+        this.sellerAddress = sellerAddress;
+        this.sellerEmail = sellerEmail;
+        this.sellerName = sellerName;
+        this.sellerPhone = sellerPhone;
     }
+
 
     public String getDescription() {
         return description;
@@ -89,5 +95,37 @@ public class Products {
 
     public void setProductState(String productState) {
         this.productState = productState;
+    }
+
+    public String getSellerAddress() {
+        return sellerAddress;
+    }
+
+    public void setSellerAddress(String sellerAddress) {
+        this.sellerAddress = sellerAddress;
+    }
+
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerPhone() {
+        return sellerPhone;
+    }
+
+    public void setSellerPhone(String sellerPhone) {
+        this.sellerPhone = sellerPhone;
     }
 }
