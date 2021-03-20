@@ -26,6 +26,7 @@ import android.widget.Toast;
 import android.content.Context;
 
 import com.aramadan.aswan.LoginAndRegister.Ui.MainActivity;
+import com.aramadan.aswan.LoginAndRegister.Ui.SplashActivity;
 import com.aramadan.aswan.R;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -91,10 +92,7 @@ public class AboutFragment extends Fragment {
                     SharedPreferences.Editor eneditor = arSharedPreferences.edit();
                     eneditor.putString("language", "ar");
                     eneditor.apply();
-                    Toast.makeText(getContext(),  R.string.language, Toast.LENGTH_LONG).show();
-
-//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                    startActivity(intent);
+                    startActivity(new Intent(getContext() , SplashActivity.class));
 
                 } else if (selectedLang.equals("English")) {
 
@@ -102,10 +100,8 @@ public class AboutFragment extends Fragment {
                     SharedPreferences.Editor ditor = ensharedPreferences.edit();
                     ditor.putString("language", "en");
                     ditor.apply();
-                    Toast.makeText(getContext(), R.string.language, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getContext(), SplashActivity.class));
 
-//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                    startActivity(intent);
                 }
             }
 

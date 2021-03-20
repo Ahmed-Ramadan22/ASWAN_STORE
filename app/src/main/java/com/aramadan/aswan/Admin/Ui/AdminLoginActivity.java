@@ -127,12 +127,6 @@ public class AdminLoginActivity extends AppCompatActivity {
 
                     if (usersData.getEmail().equals(email) || usersData.getPassword().equals(password) ){
                             if (parentDbName.equals("Admins")){
-
-//                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(AdminLoginActivity.this);
-//                                SharedPreferences.Editor editor = preferences.edit();
-//
-//                                editor.putInt(USER_TYPE, 1);
-//                                editor.apply();
                                 
                                 Toast.makeText(AdminLoginActivity.this, sucess, Toast.LENGTH_SHORT).show();
                                 dialogLoading.dismiss();

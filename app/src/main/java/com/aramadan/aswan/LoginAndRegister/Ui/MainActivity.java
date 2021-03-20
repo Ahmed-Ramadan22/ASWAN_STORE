@@ -76,21 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor eneditor = arSharedPreferences.edit();
                     eneditor.putString("language", "ar");
                     eneditor.apply();
-                    Toast.makeText(MainActivity.this, "من فضلك اعد فتح الابلكيشن لكى يتم دعم اللغه العربية.", Toast.LENGTH_LONG).show();
-
-//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this , SplashActivity.class));
 
                 } else if (selectedLang.equals("English")) {
-
                     SharedPreferences ensharedPreferences = getSharedPreferences("selectedLanguage", MODE_PRIVATE);
                     SharedPreferences.Editor ditor = ensharedPreferences.edit();
                     ditor.putString("language", "en");
                     ditor.apply();
-                    Toast.makeText(MainActivity.this, "Please Restart the app to support your language.", Toast.LENGTH_LONG).show();
-
-//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this , SplashActivity.class));
                 }
             }
 
@@ -108,12 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (firebaseUser != null) {
                     Intent intent = new Intent(MainActivity.this, SellerHomeActivity.class);
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
                 } else {
                     Intent intent = new Intent(MainActivity.this, SellerRegistrationActivity.class);
-                   // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             }
@@ -126,11 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (firebaseUser != null) {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                   // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
                     Intent in = new Intent(MainActivity.this, LoginActivity.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(in);
                 }
             }
